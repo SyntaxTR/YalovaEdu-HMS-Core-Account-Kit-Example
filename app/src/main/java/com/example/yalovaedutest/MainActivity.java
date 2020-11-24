@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!isLogged){
+                if(!checkClientLogged()){ // HMS Core tarafında methodu bulamadım bende kendim yazdım :P
                     HuaweiIdAuthParams authParams = new HuaweiIdAuthParamsHelper(HuaweiIdAuthParams.DEFAULT_AUTH_REQUEST_PARAM).setAuthorizationCode().createParams();
                     HuaweiIdAuthService service = HuaweiIdAuthManager.getService(MainActivity.this, authParams);
                     startActivityForResult(service.getSignInIntent(), 8888);
@@ -85,5 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("TAG", "sign in failed : " + ((ApiException)authHuaweiIdTask.getException()).getStatusCode());
             }
         }
+    }
+    protected boolean checkClientLogged() {
+        return isLogged;
     }
 }

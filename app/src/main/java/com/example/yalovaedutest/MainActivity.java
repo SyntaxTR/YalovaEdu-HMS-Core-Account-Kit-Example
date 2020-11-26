@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         btnLogin = findViewById(R.id.btnLogin);
         tvResult = findViewById(R.id.tvResult);
 
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 // The sign-in is successful, and the user's HUAWEI ID information and authorization code are obtained.
                 AuthHuaweiId huaweiAccount = authHuaweiIdTask.getResult();
                 Log.i("TAG", "Authorization code:" + huaweiAccount.getAuthorizationCode());
-                tvResult.setText(huaweiAccount.displayName);
+                tvResult.setText(huaweiAccount.getEmail());
                 isLogged = true;
             } else {
                 isLogged = false;
